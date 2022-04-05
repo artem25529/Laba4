@@ -17,10 +17,8 @@ public class MDBServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String[] messages = req.getParameterValues("messages");
-        for (String msg : messages) {
-            producer.sendJMSMessage(msg);
-        }
+        String message = req.getParameter("message");
+        producer.sendJMSMessage(message);
 
         req.getRequestDispatcher("/index.jsp").forward(req, resp);
     }
